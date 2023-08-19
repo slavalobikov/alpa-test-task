@@ -1,0 +1,41 @@
+@import './mixins';
+
+$baseFont: 'Roboto', sans-serif;
+$baseFontSize: 16px;
+
+// ----------------------------------------------------------------------------
+// Colors
+// ----------------------------------------------------------------------------
+$overlayColor: rgba(0,0,0,0.5);
+$pinkDark: #ff9a9e;
+$pinkWhite: #fad0c4;
+$orange: #ff6600;
+$yellow:#ffcc00;
+$defaultGradient: linear-gradient(to right, $pinkDark, $pinkWhite);
+$activeGradient: linear-gradient(to right, $pinkWhite, $pinkDark);
+$activeInput: linear-gradient(to right, $orange, $yellow);
+$modalWhite: #f4f6f8;
+$shadow: 0 0 vwPC(15) vwPC(8) rgba(0,0,0,0.41);
+$inputShadow: vwPC(1) vwPC(1) vwPC(3) rgba(0, 0, 0, 0.1);
+$inputFocusShadow: 0 0 vwPC(5) rgba(255, 255, 255, 0.7), 0 0 vwPC(10) rgba(255, 204, 0, 0.5);
+$baseFontColor: #000;
+$baseBackgroundColor: #FFF;
+$primaryColor: #1A46E1;
+$greenColor: #43D0A6;
+$redColor: #EB1E1E;
+$whiteFontColor: #F5F6F7;
+$blackBackgroundColor: #111110;
+$activeNavLink: gold;
+
+// ----------------------------------------------------------------------------
+// CSS Breakpoints
+// ----------------------------------------------------------------------------
+$breakpoint-desktop-xl: 1920px;
+$breakpoint-desktop-large: 1440px;
+$breakpoint-desktop-large-little: 1350px;
+$breakpoint-desktop: 1200px;
+$breakpoint-laptop: 1024px;
+$breakpoint-tablet: 768px;
+$breakpoint-phone: 480px;
+$breakpoint-phone-small: 375px;
+$breakpoint-phone-xs: 320px;

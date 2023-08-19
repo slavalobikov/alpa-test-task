@@ -1,0 +1,29 @@
+@import './style/common';
+
+.modal {
+  background-color: $modalWhite;
+  box-shadow: 0 0 vwPC(15) vwPC(8) rgba(0,0,0,0.41);
+  border-radius: vwPC(10);
+  padding: vwPC(20);
+  width: vwPC(600);
+  height: vwPC(600);
+
+  &[data-animation="true"] {
+    animation: exit 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  }
+
+}
+
+@keyframes exit {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+

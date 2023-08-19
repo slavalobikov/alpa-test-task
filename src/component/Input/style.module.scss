@@ -1,0 +1,17 @@
+@import '../../style/common';
+
+.input {
+  background-image: $defaultGradient;
+  border: none;
+  color: $baseFontColor;
+  font-size: vwPC(16);
+  padding: vwPC(10);
+  border-radius: vwPC(5);
+  box-shadow: $inputShadow;
+
+  &:focus {
+    outline: none;
+    background-image: $activeInput;
+    box-shadow: $inputFocusShadow;
+  }
+}

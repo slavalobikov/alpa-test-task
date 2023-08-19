@@ -1,0 +1,17 @@
+@import '../../style/common';
+
+.btn {
+  min-width: vwPC(120);
+  border-radius: vwPC(12);
+  background: $defaultGradient;
+  color: $baseFontColor;
+  border: none;
+  padding: vwPC(10) vwPC(20);
+  font-size: vwPC(16);
+  cursor: pointer;
+  transition: background 0.5s ease;
+
+  &:hover {
+    background: $activeGradient;
+  }
+}
