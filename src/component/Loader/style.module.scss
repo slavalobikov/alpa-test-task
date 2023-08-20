@@ -1,0 +1,19 @@
+@import '../../style/common';
+  .loader {
+    border: vwPC(16) solid $pinkWhite;
+    border-top: vwPC(16) solid $pinkDark;
+    border-radius: 50%;
+    width: vwPC(120);
+    height: vwPC(120);
+    animation: spin 2s linear infinite;
+
+    @include phone-down() {
+      border: vwMB(16) solid $pinkWhite;
+      border-top: vwMB(16) solid $pinkDark;
+    }
+  }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

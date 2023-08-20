@@ -1,0 +1,134 @@
+@import '../../style/common';
+
+.loaderWrapper {
+  margin-top: vwPC(150);
+  @include center();
+
+  @include phone-down() {
+    margin-top: vwMB(150);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  height: vwPC(520);
+  overflow-y: auto;
+
+  @include phone-down() {
+    height: vwMB(200);
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .ava_wrapper {
+    $widthPC: vwPC(200);
+    $widthMB: vwMB(150);
+    position: relative;
+    width: $widthPC;
+    height: $widthPC;
+    cursor: pointer;
+    margin-bottom: vwPC(10);
+
+    @include phone-down() {
+      width: $widthMB;
+      height: $widthMB;
+    }
+
+    .overlay {
+      transition: background 0.5s ease-out;
+
+      img {
+        display: none;
+      }
+    }
+
+    &:hover {
+      .overlay {
+        position: absolute;
+        @include center();
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background: $overlayColor;
+
+        @include phone-down() {
+          display: none;
+        }
+
+        img {
+          display: block;
+          width: vwPC(24);
+          height: vwPC(24);
+        }
+      }
+    }
+
+    .ava {
+      width: $widthPC;
+      height: $widthPC;
+
+      @include phone-down() {
+        width: $widthMB;
+        height: $widthMB;
+      }
+    }
+  }
+
+  .btn_wrapper {
+    display: flex;
+    justify-content: right;
+
+    @include phone-down() {
+      flex-direction: column;
+
+      button {
+        margin-top: vwMB(15);
+      }
+    }
+
+    .cancel_btn {
+      margin-right: vwPC(20);
+      position: relative;
+      background: none;
+      border: vwPC(3) solid $red;
+      @include center();
+
+      &:hover {
+        border: vwPC(3) solid transparent;
+      }
+
+      &:hover:before {
+        content: "";
+        position: absolute;
+        top: vwPC(-2);
+        right: vwPC(-2);
+        bottom: vwPC(-2);
+        left: vwPC(-2);
+        border-radius: inherit;
+        border: vwPC(3) solid $red;
+        animation: heartbeat 1s infinite;
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+}

@@ -11,6 +11,28 @@ body {
   color: $baseFontColor;
   background-color: $baseBackgroundColor;
   overflow-x: hidden;
+
+  @include phone-down() {
+    font-size: vwMB(16);
+  }
+}
+
+::-webkit-scrollbar {
+  width: vwPC(3);
+  background-color: $modalWhite;
+
+  @include phone-down() {
+    width: vwMB(3);
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: $activeGradient;
+  border-radius: vwPC(5);
+
+  @include phone-down() {
+    border-radius: vwMB(5);
+  }
 }
 
 .overflow-hidden {

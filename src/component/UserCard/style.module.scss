@@ -1,19 +1,47 @@
 @import '../../style/common';
 
+
 .card {
   $widthCard: vwPC(320);
+  $widthCardMobile: vwMB(300);
   position: relative;
   color: red;
   width: $widthCard;
-  height: vwPC(500);
-  border: solid 3px red;
+  min-height: vwPC(500);
   box-sizing: content-box;
+  background: $whiteForCard;
+  box-shadow: $shadow;
+
+  @include phone-down() {
+    width: $widthCardMobile;
+  }
+
+  &[data-hide="true"] {
+    display: none;
+  }
+
+  &[data-animation="true"] {
+    animation: slide-out-tl 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  }
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
 
   .avatar {
     width: $widthCard;
     height: $widthCard;
     position: relative;
     cursor: pointer;
+
+    @include phone-down() {
+      width: $widthCardMobile;
+      height: $widthCardMobile;
+    }
 
     .overlay {
       transition: background-color 1s ease-out;
@@ -24,6 +52,10 @@
     .glass {
       display: none;
       width: vwPC(50);
+
+      @include phone-down() {
+        width: vwMB(50);
+      }
     }
 
     &:hover {
@@ -46,10 +78,73 @@
     }
   }
 
+  .title {
+    @include center();
+    word-wrap: break-word;
+    margin-top: vwPC(15);
+    color: $baseFontColor;
+    font-weight: 700;
+    overflow-x: hidden;
+
+    @include phone-down() {
+      margin-top: vwMB(10);
+    }
+  }
+
+  .mb {
+    margin-bottom: vwPC(80);
+
+    @include phone-down() {
+      margin-bottom: vwMB(80);
+    }
+  }
+  .info {
+    word-wrap: break-word;
+    margin-top: vwPC(10);
+    margin-left: vwPC(5);
+    color: $baseFontColor;
+
+    @include phone-down() {
+      margin-top: vwMB(10);
+      margin-left: vwMB(5);
+    }
+
+    span {
+      color: $gray;
+    }
+  }
+
   .editButton {
     position: absolute;
     bottom: vwPC(20);
     right: vwPC(20);
 
+    @include phone-down() {
+      bottom: vwMB(20);
+      right: vwMB(20);
+    }
+  }
+
+  .deleteIcon {
+    position: absolute;
+    bottom: vwPC(20);
+    left: vwPC(20);
+    cursor: pointer;
+
+    @include phone-down() {
+      bottom: vwMB(20);
+      left: vwMB(20);
+    }
+  }
+}
+
+@keyframes slide-out-tl {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(vwPC(-1000)) translateX(vwPC(-1000));
+    opacity: 0;
   }
 }

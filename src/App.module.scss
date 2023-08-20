@@ -1,5 +1,31 @@
 @import './style/common';
 
+.wrapperForLoader {
+  width: 100vw;
+  height: 100vh;
+  @include center();
+}
+
+.createBtn {
+  width: vwPC(300);
+  margin: vwPC(50) auto;
+
+  @include phone-down() {
+    width: vwMB(200);
+    margin: vwMB(50) auto;
+  }
+}
+
+.card_wrapper {
+  display: flex;
+  justify-content: center;
+  gap: vwPC(20);
+  flex-wrap: wrap;
+
+  @include phone-down() {
+    gap: vwMB(20)
+  }
+}
 .modal {
   background-color: $modalWhite;
   box-shadow: 0 0 vwPC(15) vwPC(8) rgba(0,0,0,0.41);
@@ -7,6 +33,15 @@
   padding: vwPC(20);
   width: vwPC(600);
   height: vwPC(600);
+  animation: slit-in-vertical 0.45s ease-out both;
+
+  @include phone-down() {
+    box-shadow: 0 0 vwMB(15) vwMB(8) rgba(0,0,0,0.41);
+    border-radius: vwMB(10);
+    padding: vwMB(20);
+    width: vwMB(300);
+    height: vwMB(300);
+  }
 
   &[data-animation="true"] {
     animation: exit 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
@@ -16,14 +51,26 @@
 
 @keyframes exit {
   0% {
-    -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
   100% {
-    -webkit-transform: translateX(1000px);
-    transform: translateX(1000px);
+    transform: translateX(vwPC(1000));
     opacity: 0;
+  }
+}
+
+@keyframes slit-in-vertical {
+  0% {
+    transform: translateZ(vwPC(-800)) rotateY(90deg);
+    opacity: 0;
+  }
+  54% {
+    transform: translateZ(vwPC(-160)) rotateY(87deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(0) rotateY(0);
   }
 }
 

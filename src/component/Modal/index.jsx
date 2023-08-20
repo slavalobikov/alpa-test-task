@@ -1,16 +1,11 @@
 import ReactDOM from 'react-dom';
 import classes from './style.module.scss';
 import {useEffect, } from "react";
+import useModal from "./hook/useModal";
 
 const Modal = ({ children, closeModal, isAnimated }) => {
 
-    useEffect(() => {
-        if (isAnimated) {
-            setTimeout(() => {
-                closeModal()
-            }, 500)
-        }
-    }, [isAnimated])
+    useModal(isAnimated, closeModal)
 
     return ReactDOM.createPortal(
         <div className={classes.wrapper}>

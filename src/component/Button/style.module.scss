@@ -2,6 +2,7 @@
 
 .btn {
   min-width: vwPC(120);
+  height: vwPC(40);
   border-radius: vwPC(12);
   background: $defaultGradient;
   color: $baseFontColor;
@@ -13,5 +14,13 @@
 
   &:hover {
     background: $activeGradient;
+  }
+
+  @include phone-down() {
+    min-width: vwMB(150);
+    height: vwMB(40);
+    border-radius: vwMB(12);
+    font-size: vwMB(16);
+    padding: vwMB(10) vwMB(20);
   }
 }

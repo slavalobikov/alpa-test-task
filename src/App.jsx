@@ -1,45 +1,52 @@
-import {useEffect, useRef, useState} from 'react'
 import './App.module.scss'
-import {useGetUsersApiQuery} from "./redux/reducers/users/usersApi";
-import UserCard from "./component/UserCard";
 import Modal from "./component/Modal";
 import classes from './App.module.scss'
 import EditUser from "./component/EditUser";
+import Loader from "./component/Loader";
+import {MODAL_MODE} from "./utils/constants";
+import Button from "./component/Button";
+import useApp from "./useApp";
 
 function App() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isAnimated, setIsAnimated] = useState(false);
-    const [photoModal, setPhotoModal] = useState(null);
-    console.log('photoModal', photoModal)
 
-    const openModal = (photo) => {
-        setIsModalOpen(true);
-        setIsAnimated(false)
-        setPhotoModal(photo)
-    };
+    const {
+        userCards,
+        isLoading,
+        closeModal,
+        modalMode,
+        userId,
+        isAnimated,
+        isModalOpen,
+        openModal,
+        setModalMod,
+        setIsAnimated,
+    } = useApp();
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
-    const date = useGetUsersApiQuery();
-    console.log('date', date)
-
-
+    if (isLoading) {
+        return <div className={classes.wrapperForLoader}><Loader/></div>
+    }
 
     return (
         <>
             {isModalOpen && (
                 <Modal isAnimated={isAnimated} closeModal={closeModal}>
                     <div className={classes.modal} data-animation={isAnimated}>
-                        <EditUser />
-                        <button onClick={() => setIsAnimated(true)}>Закрыть</button>
+                        <EditUser modalMode={modalMode} onClose={() => setIsAnimated(true)} userId={userId}/>
                     </div>
                 </Modal>
             )}
-            <UserCard setPhotoModal={setPhotoModal} openModal={openModal}
-                      img="https://this-person-does-not-exist.com/img/avatar-gen110f53dfaa484596823b430168fdfa67.jpg"
-                      name="Doe, John"/>
-            <div id="modal-root"></div>
+            <Button
+                className={classes.createBtn}
+                text="Create user"
+                onclick={() => {
+                    openModal();
+                    setModalMod(MODAL_MODE.CREATE)
+                }}
+            />
+            <div className={classes.card_wrapper}>
+                {userCards}
+            </div>
+            <div id="modal-root" />
         </>
     )
 }

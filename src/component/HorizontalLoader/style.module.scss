@@ -1,0 +1,69 @@
+@import '../../style/common';
+
+.loader {
+  margin-top: vwPC(20);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: vwPC(50);
+
+  @include phone-down() {
+    margin-top: vwMB(20);
+    height: vwMB(50);
+  }
+
+  div {
+    width: vwPC(10);
+    height: vwPC(50);
+    margin: 0 vwPC(2);
+    background-color: $pinkDark;
+    border-radius: vwPC(2);
+    animation: loaderAnimation 1.5s infinite ease-in-out;
+
+    @include phone-down() {
+      width: vwMB(10);
+      height: vwMB(50);
+      margin: 0 vwMB(2)
+    }
+  }
+}
+
+
+@keyframes loaderAnimation {
+  0%,
+  50% {
+    height: vwPC(50);
+
+    @include phone-down() {
+      height: vwMB(50);
+    }
+  }
+  25%,
+  75% {
+    height: vwPC(30);
+
+    @include phone-down() {
+      height: vwMB(30);
+    }
+  }
+}
+
+.bar1 {
+  animation-delay: 0s;
+}
+
+.bar2 {
+  animation-delay: 0.1s;
+}
+
+.bar3 {
+  animation-delay: 0.2s;
+}
+
+.bar4 {
+  animation-delay: 0.3s;
+}
+
+.bar5 {
+  animation-delay: 0.4s;
+}

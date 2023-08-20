@@ -1,11 +1,14 @@
-import {useState} from "react";
 import classes from './style.module.scss';
 
-const Input = ({value = '', onChange = () => {}}) => {
+const Input = ({value = '', onChange = () => {}, error, label}) => {
 
-    const [v, setV] = useState('')
-
-    return <input className={classes.input} value={v} onChange={(e) => setV(e.currentTarget.value)} type="text"/>
+    return <label className={classes.label}>
+        <div className={classes.wrapper}>
+            <div className={classes.label_name}>{label}</div>
+            <input data-error={!!error} className={classes.input} value={value} onChange={onChange} type="text"/>
+        </div>
+        {error && <div className={classes.error}>{error}</div>}
+    </label>
 }
 
 export default Input;

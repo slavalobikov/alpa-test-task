@@ -1,17 +1,71 @@
 @import '../../style/common';
+.label {
+  .wrapper {
+    @include center();
+    padding-bottom: vwPC(10);
 
-.input {
-  background-image: $defaultGradient;
-  border: none;
-  color: $baseFontColor;
-  font-size: vwPC(16);
-  padding: vwPC(10);
-  border-radius: vwPC(5);
-  box-shadow: $inputShadow;
+    @include phone-down() {
+      padding-bottom: vwMB(10);
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
 
-  &:focus {
-    outline: none;
-    background-image: $activeInput;
-    box-shadow: $inputFocusShadow;
+    .label_name {
+      width: vwPC(100);
+
+      @include phone-down() {
+        width: 100%;
+        margin-bottom: vwMB(5);
+      }
+    }
+
+    .input {
+      background-image: $defaultGradient;
+      border: none;
+      color: $baseFontColor;
+      font-size: vwPC(16);
+      padding: vwPC(10);
+      border-radius: vwPC(5);
+      box-shadow: $inputShadow;
+      width: 100%;
+
+      @include phone-down() {
+        font-size: vwMB(16);
+        padding: vwMB(10);
+        border-radius: vwMB(5);
+      }
+
+      &[data-error="true"] {
+        border: solid vwPC(3) $red;
+      }
+
+      &:focus {
+        outline: none;
+        background-image: $activeInput;
+        box-shadow: $inputFocusShadow;
+      }
+    }
+  }
+
+  .error {
+    display: flex;
+    justify-content: end;
+    margin-bottom: vwPC(10);
+    color: $red;
+    animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+  }
+
+  @keyframes tracking-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 }
