@@ -9,7 +9,7 @@
   }
 }
 
-.form {
+.modal_wrapper {
   display: flex;
   flex-direction: column;
   height: vwPC(520);
@@ -23,65 +23,10 @@
     display: none;
   }
 
-  .ava_wrapper {
-    $widthPC: vwPC(200);
-    $widthMB: vwMB(150);
-    position: relative;
-    width: $widthPC;
-    height: $widthPC;
-    cursor: pointer;
-    margin-bottom: vwPC(10);
-
-    @include phone-down() {
-      width: $widthMB;
-      height: $widthMB;
-    }
-
-    .overlay {
-      transition: background 0.5s ease-out;
-
-      img {
-        display: none;
-      }
-    }
-
-    &:hover {
-      .overlay {
-        position: absolute;
-        @include center();
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-        background: $overlayColor;
-
-        @include phone-down() {
-          display: none;
-        }
-
-        img {
-          display: block;
-          width: vwPC(24);
-          height: vwPC(24);
-        }
-      }
-    }
-
-    .ava {
-      width: $widthPC;
-      height: $widthPC;
-
-      @include phone-down() {
-        width: $widthMB;
-        height: $widthMB;
-      }
-    }
-  }
-
   .btn_wrapper {
     display: flex;
     justify-content: right;
+    margin-top: vwPC(15);
 
     @include phone-down() {
       flex-direction: column;

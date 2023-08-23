@@ -84,5 +84,6 @@ export const {
     useGetUserApiQuery,
     usePutUserApiMutation,
     useDeleteUserApiMutation,
-    usePostUserApiMutation
+    usePostUserApiMutation,
+    useLazyGetUserApiQuery,
 } = usersApi;

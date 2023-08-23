@@ -1,0 +1,69 @@
+@import '../../style/common';
+
+.timePicker {
+  margin-top: vwPC(15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > div {
+    display: flex;
+    margin-top: vwPC(20);
+
+    .error {
+      margin-top: vwPC(15);
+      margin-bottom: vwPC(10);
+      color: $red;
+      animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    }
+
+    @keyframes tracking-in-expand {
+      0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+      }
+      40% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    label {
+      display: flex;
+      margin-right: vwPC(50);
+
+      .name {
+        @include center();
+        margin-right: vwPC(20);
+      }
+
+      .select {
+        background: $defaultGradient;
+        border: none;
+        padding: vwPC(8);
+        border-radius: 4px;
+        font-size: 16px;
+        appearance: none;
+        outline: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &:focus {
+          background: $activeInput;
+        }
+
+        &:active {
+          background: $defaultGradient;
+        }
+      }
+    }
+
+    .time {
+      @include center();
+    }
+  }
+}

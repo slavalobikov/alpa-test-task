@@ -1,0 +1,51 @@
+@import '../../style/common';
+
+.registration_steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: vwPC(500);
+    margin: vwPC(15) auto;
+
+    @include phone-down() {
+        width: vwMB(200);
+    }
+
+    .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .circle {
+        width: vwPC(20);
+        height: vwPC(20);
+        border-radius: 50%;
+        background-color: $pinkDark;
+        margin-bottom: vwPC(5);
+
+        @include phone-down() {
+            width: vwMB(20);
+            height: vwMB(20);
+            margin-bottom: vwMB(5);
+        }
+
+        &[data-is-current-step='true'] {
+            background-color: $orange;
+        }
+    }
+
+
+
+    .title {
+        font-size: vwPC(14);
+        text-align: center;
+
+        @include phone-down() {
+            font-size: vwMB(16);
+        }
+    }
+
+}
+
+

@@ -1,0 +1,15 @@
+@import '../../../style/common';
+
+
+.loaderWrapper {
+  margin-top: vwPC(150);
+  @include center();
+
+  @include phone-down() {
+    margin-top: vwMB(150);
+  }
+}
+.textarea {
+  resize: none;
+  height: vwPC(150);
+}

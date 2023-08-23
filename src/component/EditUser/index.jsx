@@ -1,59 +1,54 @@
-import Input from "../Input";
-import Loader from "../Loader";
 import classes from './style.module.scss';
+import {useEffect, useState} from "react";
+import StepOne from "./StepOne";
+import Step from "../Step";
 import Button from "../Button";
-import HorizontalLoader from "../HorizontalLoader";
-import no_avatar from "../../assets/img/no_avatar.png";
-import edit from './../../assets/svg/edit.svg';
-import useEditUser from "./hook/useEditUser";
+import {useLazyGetUserApiQuery} from "../../redux/reducers/users/usersApi";
+import {MODAL_MODE} from "../../utils/constants";
+import Loader from "../Loader";
+import StepTwo from "./StepTwo";
+import StepThree from "./StepThree";
 
-const EditUser = ({userId, onClose, modalMode}) => {
 
-    const {
-        isLoading,
-        formik,
-        isEdit,
-        config,
-        getValue,
-        setValue,
-        inputFileRef,
-        handleImageUpload,
-        isPostPutLoading
-    } = useEditUser(userId, modalMode, onClose)
+const EditUser = ({onClose, modalMode, userId}) => {
+    const [step, setStep] = useState(1);
+    const [firstValues, setFirstValues] = useState(null);
+    const [secondValues, setSecondValues] = useState(null);
+    const [thirdValues, setThirdValues] = useState(null);
+    const [getUser, {data, isFetching}] = useLazyGetUserApiQuery();
+    const isEdit = modalMode === MODAL_MODE.EDIT
+    useEffect(() => {
+        if (modalMode === MODAL_MODE.EDIT) {
+            getUser(userId)
+        }
+    }, [])
+    const Buttons = () => {
+        return <div className={classes.btn_wrapper}>
+            <Button className={classes.cancel_btn} onclick={onClose} text="Cancel" />
+            <Button type="submit" text='Next' />
+        </div>
+    }
 
-    if (isLoading) {
+    if (isFetching) {
         return <div className={classes.loaderWrapper}><Loader/></div>
     }
 
-    return <form className={classes.form} onSubmit={formik.handleSubmit}>
-        {isEdit ? 'Edit' : 'Create'} user
-        {config.map(el => <Input
-            key={el.id}
-            error={formik.errors?.[el.name]}
-            label={el.label} value={getValue(el.name)}
-            onChange={(e) => setValue(el.name, e)}
-        />)}
-        <input
-            className={classes.hide}
-            ref={inputFileRef}
-            type="file"
-            onChange={handleImageUpload}
+    return  <div className={classes.modal_wrapper}>
+        <Step maxStep={3} currentStep={step} />
+        <StepOne isEdit={isEdit} data={data} setFirstValues={setFirstValues} step={step} setStep={setStep} children={<Buttons />} />
+        <StepTwo isEdit={isEdit} data={data} setSecondValues={setSecondValues} step={step} setStep={setStep} children={<Buttons />} />
+        <StepThree
+            data={data}
+            isEdit={isEdit}
+            firstValues={firstValues}
+            secondValues={secondValues}
+            thirdValues={thirdValues}
+            setThirdValues={setThirdValues}
+            step={step} setStep={setStep}
+            onClose={onClose}
+            children={<Buttons />}
         />
-        <div onClick={() => inputFileRef.current?.click()} className={classes.ava_wrapper}>
-            <div className={classes.overlay} >
-                <img src={edit} alt="edit"/>
-            </div>
-            <img
-                className={classes.ava} src={formik.values?.photo || no_avatar}
-                alt={formik.values?.name}
-            />
-        </div>
-        <div className={classes.btn_wrapper}>
-            <Button onclick={onClose} className={classes.cancel_btn} text="Cancel" />
-            <Button disabled={isPostPutLoading} type="submit" text="Save"/>
-        </div>
-        {isPostPutLoading && <HorizontalLoader/>}
-    </form>
+    </div>
 }
 
 export default EditUser;

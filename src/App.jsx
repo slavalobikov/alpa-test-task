@@ -6,6 +6,7 @@ import Loader from "./component/Loader";
 import {MODAL_MODE} from "./utils/constants";
 import Button from "./component/Button";
 import useApp from "./useApp";
+import DatePicker from "./component/DatePicker";
 
 function App() {
 
@@ -43,6 +44,9 @@ function App() {
                     setModalMod(MODAL_MODE.CREATE)
                 }}
             />
+{/*
+            <DatePicker />
+*/}
             <div className={classes.card_wrapper}>
                 {userCards}
             </div>
